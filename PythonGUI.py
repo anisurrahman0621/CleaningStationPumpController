@@ -27,7 +27,11 @@ mode=' '
 turn_off = False
 root = Tk()
 frame = Frame(root)
-root.iconbitmap('rainy.ico')
+try:
+    root.iconbitmap('rainy.ico')
+except:
+    pass
+
 root.title('All Weather Testing')
 LED = board.digital[11]
 reading = board.analog[0]
