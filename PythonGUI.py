@@ -16,12 +16,9 @@ reading.enable_reporting()
 
 def timer_check(final_time):
     t = 0
-    while t < final_time:
+    while t < final_time and not turn_off:
         time.sleep(0.1)
-        if not turn_off:
-            t+=0.1
-        else:
-            break
+        t+=0.1
         frame.update()
 
 #==========================================================#
@@ -48,18 +45,29 @@ def arduino_oscillate(runTime, restTime, oscillations):
 
 def arduino_constant():
     initial_power = int(powerLevel.get())
+    initial_slider = int(w2.get())
     LED.write(initial_power/100)
     board.digital[13].write(1)
     while not turn_off:
-        scaleVal = int(w2.get())
+        newSlider = int(w2.get())
+        try:
+            newPower = int(powerLevel.get())
+        except:
+            newPower = 0
         time.sleep(0.1)
-        if turn_off:
-            break
-        elif scaleVal != initial_power:
-            LED.write(scaleVal/100)
-            initial_power = scaleVal
+        if newPower != initial_power:
+            LED.write(newPower/100)
+            initial_power = newPower
+            w2.set(newPower)
+            initial_slider = int(newPower)
+        elif newSlider != initial_slider:
+            LED.write(newSlider/100)
+            initial_slider = newSlider
+            initial_power = newSlider
+            newPower = newSlider
             powerLevel.delete(0, 'end')
-            powerLevel.insert(0, str(scaleVal))
+            powerLevel.insert(0, str(newSlider))
+        opLabel.config(text='Spray running at %s%% power' %(powerLevel.get()))
         frame.update()
     LED.write(0)
     board.digital[13].write(0)
