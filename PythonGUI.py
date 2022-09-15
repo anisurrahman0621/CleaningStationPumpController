@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import ttk
 import serial
 import time
 import pyfirmata
@@ -24,12 +23,35 @@ def timer_check(final_time):
 #==========================================================#
 #Arduino command functions
 #==========================================================#
-def arduino_timer(time_val, power):
-    t= 0
-    LED.write(power)
+def arduino_timer(time_val):
+    t=0
+    initial_power = int(powerLevel.get())
+    initial_slider = int(w2.get())
+    LED.write(initial_power/100)
     board.digital[13].write(1)
-    timer_check(time_val)
-    board.digital[11].write(0)
+    while not turn_off and t < time_val:
+        newSlider = int(w2.get())
+        try:
+            newPower = int(powerLevel.get())
+        except:
+            newPower = 0
+        time.sleep(0.1)
+        t += 0.1
+        if newPower != initial_power:
+            LED.write(newPower/100)
+            initial_power = newPower
+            w2.set(newPower)
+            initial_slider = int(newPower)
+        elif newSlider != initial_slider:
+            LED.write(newSlider/100)
+            initial_slider = newSlider
+            initial_power = newSlider
+            newPower = newSlider
+            powerLevel.delete(0, 'end')
+            powerLevel.insert(0, str(newSlider))
+        opLabel.config(text='Spray running at %s%% power' %(powerLevel.get()))
+        frame.update()
+    LED.write(0)
     board.digital[13].write(0)
 
 def arduino_oscillate(runTime, restTime, oscillations):
@@ -128,8 +150,10 @@ def timer():
         timer_run_button.grid(row=3, column=1)
         home_button.grid_forget()
         shutoff.grid(row=3, column=0)
+        w2.set(int(powerVal))
+        w2.grid(row=5, column=0)
         frame.update()
-        arduino_timer(time_int, power_int)
+        arduino_timer(time_int)
         opLabel.config(text='Done')
         #timer_check(time_int)
 
@@ -248,11 +272,3 @@ frame.pack()
 start_screen()
 root.mainloop()
 
-
-# import pyfirmata
-# board = pyfirmata.Arduino('COM3')
-# while True:
-#     board.digital[13].write(1)
-#     time.sleep(3)
-#     board.digital[13].write(0)
-#     time.sleep(3)
