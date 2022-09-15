@@ -79,10 +79,10 @@ def arduino_timer(time_val):
     LED.write(0)
     board.digital[13].write(0)
 
-def arduino_oscillate(runTime, restTime, oscillations):
+def arduino_oscillate(runTime, restTime, power, oscillations):
     i = 0
     while i < oscillations:
-        board.digital[11].write(1)
+        board.digital[11].write(power/100)
         board.digital[13].write(1)
         timer_check(runTime)
         board.digital[11].write(0)
@@ -136,7 +136,7 @@ def shut_off(mode):
     if mode == 'timer':
         home_button.grid(row=3, column=0)
     elif mode == 'oscillate':
-        home_button.grid(row=4, column=0)
+        home_button.grid(row=5, column=0)
     else:
         home_button.grid(row=2, column = 0)
     
@@ -180,7 +180,8 @@ def timer():
         frame.update()
         arduino_timer(time_int)
         opLabel.config(text='Done')
-        #timer_check(time_int)
+        shutoff.grid_forget()
+        home_button.grid(row=3, column=0)
 
 def cont():
     global mode
@@ -205,25 +206,28 @@ def oscillate():
     global mode
     global turn_off
     turn_off = False
-    #shutoff.deselect()
-    opLabel.grid(row=5, column=1)
+    opLabel.grid(row=6, column=1)
     mode='oscillate'
     topLabel.config(text='Osiclattion Mode')
     time_on = runTime.get()
     time_off = restTime.get()
+    powerVal = powerLevel.get()
     time_int = int(time_on)
     rest_int = int(time_off)
+    power_int = int(powerVal)
     oscillations_string = oscillation_number.get()
     oscillations = int(oscillations_string)
     if time_int > 0 and rest_int > 0:
-        opLabel.config(text='Spray pulsing for %ss on and %ss off %s iterations' %(time_on, time_off, oscillations))
+        opLabel.config(text='Spray pulsing for %ss on and %ss off at %s%% power for %s iterations' %(time_on, time_off, powerVal,oscillations))
         time.sleep(0.5)
-        oscillate_run_button.grid(row=4, column=1)
+        oscillate_run_button.grid(row=5, column=1)
         home_button.grid_forget()
-        shutoff.grid(row=4, column=0)
+        shutoff.grid(row=5, column=0)
         frame.update()
-        arduino_oscillate(time_int, rest_int, oscillations)
+        arduino_oscillate(time_int, rest_int, power_int, oscillations)
         opLabel.config(text='Done')
+        shutoff.grid_forget()
+        home_button.grid(row=5, column=0)
     
 
 #==========================================================#
@@ -250,9 +254,12 @@ def oscillate_function():
     restTime.grid(row = 2, column=0)
     timeLabel.grid(row=1, column=1)
     restTimeLabel.grid(row=2, column=1)
-    oscillation_number.grid(row=3, column=0)
-    oscillation_number_label.grid(row=3, column=1)
-    oscillate_run_button.grid(row=4, column=0)
+    powerLevel.grid(row=3, column=0)
+    powerLabel.grid(row=3, column=1)
+    oscillation_number.grid(row=4, column=0)
+    oscillation_number_label.grid(row=4, column=1)
+    oscillate_run_button.grid(row=5, column=0)
+
     
 
 def const_function():
