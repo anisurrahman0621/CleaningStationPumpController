@@ -1,13 +1,34 @@
 from tkinter import *
+from tkinter import messagebox
 import serial
 import time
 import pyfirmata
+
+
+#================================================#
+#Starting program and establishing connection
+#================================================#
+root = Tk()
+while True:
+    try:
+        board = pyfirmata.Arduino('COM3')
+    except:
+        root.withdraw()
+        if messagebox.askretrycancel('Error', 'Arduino not plugged in') == False:
+            root.destroy()
+    else:
+        break
+root.destroy()
+#================================================#
+#Arduino connected
+#================================================#
 
 mode=' '
 turn_off = False
 root = Tk()
 frame = Frame(root)
-board = pyfirmata.Arduino('COM3')
+root.iconbitmap('rainy.ico')
+root.title('All Weather Testing')
 LED = board.digital[11]
 reading = board.analog[0]
 LED.mode = pyfirmata.PWM
