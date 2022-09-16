@@ -17,13 +17,13 @@ Additional functionality will be added. Currently, the stepper motors to positio
 ![Alt text](/pictures/error_screen.png?raw=true "Error Screen")  
   
 ### Home Screen  
-![Alt text](/pictures/homescreen.png?raw=true "Error Screen")  
+![Alt text](/pictures/homescreen.png?raw=true "Home Screen")  
   
 ### Timer Mode  
-![Alt text](/pictures/timer_mode.png?raw=true "Error Screen")  
+![Alt text](/pictures/timer_mode.png?raw=true "Timer Mode")  
   
 ### Oscillation Mode 
-![Alt text](/pictures/oscillation_mode.png.png?raw=true "Oscillation Mode")  
+![Alt text](/pictures/oscillation_mode.png?raw=true "Timer Mode") 
   
 ### Continuous Mode  
 ![Alt text](/pictures/continuous_mode.png.png?raw=true "Continuous Mode") 
