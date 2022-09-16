@@ -12,4 +12,4 @@ Then oscillating mode takes 4 inputs from the user-- time on, time off, power le
 Additional functionality will be added. Currently, the stepper motors to position test samples are run using a different GUI. The goal is to have both GUIs combined so that everything can be controlled from one applicaiton.  
   
 ## Screenshots
-![Alt text](/pictures/error_screen.jpg?raw=true "Erro Screen")
+![Alt text](./pictures/error_screen.jpg?raw=true "Erro Screen")
