@@ -13,6 +13,10 @@ Additional functionality will be added. Currently, the stepper motors to positio
   
 ## Screenshots  
   
-![Alt text](/pictures/error_screen.png?raw=true "Error Screen")
+### Error Screen
+![Alt text](/pictures/error_screen.png?raw=true "Error Screen")  
+  
+## Home Screen  
+  
 ![Alt text](/pictures/homescreen.png?raw=true "Error Screen")
 
