@@ -23,8 +23,8 @@ Additional functionality will be added. Currently, the stepper motors to positio
 ![Alt text](/pictures/timer_mode.png?raw=true "Timer Mode")  
   
 ### Oscillation Mode 
-![Alt text](/pictures/oscillation_mode.png?raw=true "Timer Mode") 
+![Alt text](/pictures/oscillation_mode.png?raw=true "Oscillation Mode") 
   
 ### Continuous Mode  
-![Alt text](/pictures/continuous_mode.png.png?raw=true "Continuous Mode") 
+![Alt text](/pictures/continuous_mode.png?raw=true "Continuous Mode") 
 
