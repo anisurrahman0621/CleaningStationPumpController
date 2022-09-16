@@ -16,7 +16,15 @@ Additional functionality will be added. Currently, the stepper motors to positio
 ### Error Screen
 ![Alt text](/pictures/error_screen.png?raw=true "Error Screen")  
   
-## Home Screen  
+### Home Screen  
+![Alt text](/pictures/homescreen.png?raw=true "Error Screen")  
   
-![Alt text](/pictures/homescreen.png?raw=true "Error Screen")
+### Continuous Mode  
+![Alt text](/pictures/timer_mode.png?raw=true "Error Screen")  
+  
+### Oscillation Mode 
+![Alt text](/pictures/oscillation_mode.png.png?raw=true "Error Screen")  
+  
+### Continuous Mode  
+![Alt text](/pictures/continuous_mode.png.png?raw=true "Error Screen") 
 
